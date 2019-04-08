@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+              <img src='{{post.img}}' class="img-fluid" alt="Cinque Terre">
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
