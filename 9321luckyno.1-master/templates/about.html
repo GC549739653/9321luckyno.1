@@ -1,0 +1,239 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Shows the potential important factors(attributes)</h2>
+    <h4>By using Pearson correlation coefficient, we can get the following information: The more similar the two lines are, the higher the correlation. </h4>
+    <style>
+    .hide {  display: none;  }
+    .show {  display: inline-block;  }
+    </style>
+<style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+}
+.button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+    <button class="button" value="Show age correlation " onclick="fn0()" style="display:block;" id="0">Show age correlation </button>
+    <img src="/static/coef/age.png" height="600" width="1400" id="img0" class="hide" />
+    <script>
+        function fn0() {
+            var img = document.getElementById("img0");
+            if (document.getElementById("0").innerHTML == "Hide age correlation") {
+                img.className = "hide";
+                document.getElementById("0").innerHTML = "Show age correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("0").innerHTML = "Hide age correlation";}
+        }
+    </script>
+    <button class="button" value="Show number of major vessels (0-3) colored by flourosopy correlation " onclick="fn1()" style="display:block;" id="1">Show number of major vessels (0-3) colored by flourosopy correlation </button>
+    <img src="/static/coef/ca.png" height="600" width="1400" id="img1" class="hide" />
+    <script>
+        function fn1() {
+            var img = document.getElementById("img1");
+            if (document.getElementById("1").innerHTML == "Hide number of major vessels (0-3) colored by flourosopy correlation") {
+                img.className = "hide";
+                document.getElementById("1").innerHTML = "Show number of major vessels (0-3) colored by flourosopy correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("1").innerHTML = "Hide number of major vessels (0-3) colored by flourosopy correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show serum cholestoral in mg/dl correlation " onclick="fn2()" style="display:block;" id="2">Show serum cholestoral in mg/dl correlation </button>
+    <img src="/static/coef/chol.png" height="600" width="1400" id="img2" class="hide" />
+    <script>
+        function fn2() {
+            var img = document.getElementById("img2");
+            if (document.getElementById("2").innerHTML == "Hide serum cholestoral in mg/dl correlation") {
+                img.className = "hide";
+                document.getElementById("2").innerHTML = "Show serum cholestoral in mg/dl correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("2").innerHTML = "Hide serum cholestoral in mg/dl correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show sex correlation " onclick="fn3()" style="display:block;" id="3">Show sex correlation </button>
+    <img src="/static/coef/gender.png" height="600" width="1400" id="img3" class="hide" />
+    <script>
+        function fn3() {
+            var img = document.getElementById("img3");
+            if (document.getElementById("3").innerHTML == "Hide sex correlation") {
+                img.className = "hide";
+                document.getElementById("3").innerHTML = "Show sex correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("3").innerHTML = "Hide sex correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show chest pain type correlation " onclick="fn4()" style="display:block;" id="4">Show chest pain type correlation </button>
+    <img src="/static/coef/cp.png" height="600" width="1400" id="img4" class="hide" />
+    <script>
+        function fn4() {
+            var img = document.getElementById("img4");
+            if (document.getElementById("4").innerHTML == "Hide chest pain type correlation") {
+                img.className = "hide";
+                document.getElementById("4").innerHTML = "Show chest pain type correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("4").innerHTML = "Hide chest pain type correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show resting blood pressure correlation " onclick="fn5()" style="display:block;" id="5">Show resting blood pressure correlation </button>
+    <img src="/static/coef/trestbps.png" height="600" width="1400" id="img5" class="hide" />
+    <script>
+        function fn5() {
+            var img = document.getElementById("img5");
+            if (document.getElementById("5").innerHTML == "Hide resting blood pressure correlation") {
+                img.className = "hide";
+                document.getElementById("5").innerHTML = "Show resting blood pressure correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("5").innerHTML = "Hide resting blood pressure correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show fasting blood sugar correlation " onclick="fn6()" style="display:block;" id="6">Show fasting blood sugar correlation </button>
+    <img src="/static/coef/fbs.png" height="600" width="1400" id="img6" class="hide" />
+    <script>
+        function fn6() {
+            var img = document.getElementById("img6");
+            if (document.getElementById("6").innerHTML == "Hide fasting blood sugar correlation") {
+                img.className = "hide";
+                document.getElementById("6").innerHTML = "Show fasting blood sugar correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("6").innerHTML = "Hide fasting blood sugar correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show resting electrocardiographic results correlation " onclick="fn7()" style="display:block;" id="7">Show resting electrocardiographic results correlation </button>
+    <img src="/static/coef/restecg.png" height="600" width="1400" id="img7" class="hide" />
+    <script>
+        function fn7() {
+            var img = document.getElementById("img7");
+            if (document.getElementById("7").innerHTML == "Hide resting electrocardiographic results correlation") {
+                img.className = "hide";
+                document.getElementById("7").innerHTML = "Show resting electrocardiographic results correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("7").innerHTML = "Hide resting electrocardiographic results correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show maximum heart rate achieved correlation " onclick="fn8()" style="display:block;" id="8">Show maximum heart rate achieved correlation </button>
+    <img src="/static/coef/thalach.png" height="600" width="1400" id="img8" class="hide" />
+    <script>
+        function fn8() {
+            var img = document.getElementById("img8");
+            if (document.getElementById("8").innerHTML == "Hide maximum heart rate achieved correlation") {
+                img.className = "hide";
+                document.getElementById("8").innerHTML = "Show maximum heart rate achieved correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("8").innerHTML = "Hide maximum heart rate achieved correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show exercise induced angina correlation " onclick="fn9()" style="display:block;" id="9">Show exercise induced angina correlation </button>
+    <img src="/static/coef/exang.png" height="600" width="1400" id="img9" class="hide" />
+    <script>
+        function fn9() {
+            var img = document.getElementById("img9");
+            if (document.getElementById("9").innerHTML == "Hide exercise induced angina correlation") {
+                img.className = "hide";
+                document.getElementById("9").innerHTML = "Show exercise induced angina correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("9").innerHTML = "Hide exercise induced angina correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show oldpeak correlation " onclick="fn10()" style="display:block;" id="10">Show oldpeak correlation </button>
+    <img src="/static/coef/oldpeak.png" height="600" width="1400" id="img10" class="hide" />
+    <script>
+        function fn10() {
+            var img = document.getElementById("img10");
+            if (document.getElementById("10").innerHTML == "Hide oldpeak correlation") {
+                img.className = "hide";
+                document.getElementById("10").innerHTML = "Show oldpeak correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("10").innerHTML = "Hide oldpeak correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show the slope of the peak exercise ST segment correlation " onclick="fn11()" style="display:block;" id="11">Show the slope of the peak exercise ST segment correlation </button>
+    <img src="/static/coef/slope.png" height="600" width="1400" id="img11" class="hide" />
+    <script>
+        function fn11() {
+            var img = document.getElementById("img11");
+            if (document.getElementById("11").innerHTML == "Hide the slope of the peak exercise ST segment correlation") {
+                img.className = "hide";
+                document.getElementById("11").innerHTML = "Show the slope of the peak exercise ST segment correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("11").innerHTML = "Hide the slope of the peak exercise ST segment correlation";}
+        }
+    </script>
+
+    <button class="button" value="Show thal(Thalassemia) correlation " onclick="fn12()" style="display:block;" id="12">Show thal(Thalassemia) correlation </button>
+    <img src="/static/coef/thal.png" height="600" width="1400" id="img12" class="hide" />
+    <script>
+        function fn12() {
+            var img = document.getElementById("img12");
+            if (document.getElementById("12").innerHTML == "Hide thal(Thalassemia) correlation") {
+                img.className = "hide";
+                document.getElementById("12").innerHTML = "Show thal(Thalassemia) correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("12").innerHTML = "Hide thal(Thalassemia) correlation";}
+        }
+    </script>
+
+
+    <h4>By using linear regression and comparing coef, we can get more refined which attributes are more relevant.The value is close to +1, the positive correlation is strong, close to -1, and the negative correlation is strong.</h4>
+        <p class="article-content">{{ posts[0] }}</p>
+        <button class="button" value="Show correlation " onclick="fn13()" style="display:block;" id="13">Show correlation </button>
+    <img src="/static/coef/1.png" height="600" width="1000" id="img13" class="hide" />
+    <script>
+        function fn13() {
+            var img = document.getElementById("img13");
+            if (document.getElementById("13").innerHTML == "Hide correlation") {
+                img.className = "hide";
+                document.getElementById("13").innerHTML = "Show correlation";}
+            else {
+                img.className = "show";
+                document.getElementById("13").innerHTML = "Hide correlation";}
+        }
+    </script>
+    <h4>By using decision tree, we have drawn such a decision tree.</h4>
+    <input class = "button" type=button onclick="window.open('/static/coef/decisiontree.png')" value="click to show">
+{#    <input type=button onclick="window.location.href('/static/coef/decisiontree.png')" value="click to show">#}
+
+{% endblock content %}
