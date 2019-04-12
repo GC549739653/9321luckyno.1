@@ -76,6 +76,14 @@ clf = tree.DecisionTreeClassifier()
 clf = clf.fit(selected_X, df_y)
 feat_importance = clf.tree_.compute_feature_importances(normalize=False)
 print("feat importance = " + str(feat_importance))
+dot_data = tree.export_graphviz(clf, out_file=None,
+                            feature_names=selected_X.columns,
+                            class_names=['No', 'Yes'],
+                         filled=True, rounded=True,
+                         special_characters=True)
+graph = pydotplus.graph_from_dot_data(dot_data)
+graph.write_png("tree.png")
+Image(graph.create_png())
 
 save_file = 'trained_model.sav'
 pickle.dump(svm, open(save_file, 'wb'))
