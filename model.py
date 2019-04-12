@@ -23,12 +23,12 @@ df['ca'] = pd.to_numeric(df['ca'], errors='coerce')
 df['target'].replace(to_replace=[1, 2, 3, 4], value=1, inplace=True)
 
 
-#df[['age', 'sex', 'fbs', 'exang', 'ca']] = df[['age', 'sex', 'fbs', 'exang', 'ca']].astype(int)
+df[['age', 'sex', 'fbs', 'exang', 'ca']] = df[['age', 'sex', 'fbs', 'exang', 'ca']].astype(int)
 df.cp = df.cp.astype('category')
 df.restecg = df.restecg.astype('category')
 df.slope = df.slope.astype('category')
 df.thal = df.thal.astype('category')
-df.sex = df.sex.astype('category')
+#df.sex = df.sex.astype('category')
 
 df = pd.get_dummies(df)
 df[['trestbps', 'chol', 'thalach', 'oldpeak']] = df[['trestbps', 'chol', 'thalach', 'oldpeak']].astype(float)
