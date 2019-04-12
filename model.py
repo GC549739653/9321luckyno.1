@@ -7,8 +7,10 @@ from sklearn.utils import shuffle
 import pandas as pd
 import numpy as np
 import pickle
-
-
+from sklearn import tree
+from io import StringIO
+from IPython.display import Image
+import pydotplus
 
 df = pd.read_csv('processed.cleveland.data', names=["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope",
          "ca", "thal", "target"])
@@ -70,6 +72,10 @@ print(f"Cross validated : Support vector machine, 'Accuracy: {results.mean()}")
 print()
 print("LinearRegression features importance")
 print(np.std(train_x, 0) * linearRegression.coef_[0])
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(selected_X, df_y)
+feat_importance = clf.tree_.compute_feature_importances(normalize=False)
+print("feat importance = " + str(feat_importance))
 
 save_file = 'trained_model.sav'
 pickle.dump(svm, open(save_file, 'wb'))
@@ -100,5 +106,3 @@ def prediction(sex,exang,ca,cp,restecg,slope,thal):
     results = svm.predict([input])
 
     return results[0]
-print(prediction(1,2,2,1.0,1.0,2.0,6.0)
-)
