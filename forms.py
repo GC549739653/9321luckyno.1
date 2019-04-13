@@ -44,4 +44,7 @@ class PredictForm(FlaskForm):
         (1,"1"),
         (2,"2"),
         (3,"3")],coerce=int)
+    thal = SelectField("Thalassemia?", choices=[(3,"Normal"),
+        (6,"Fixed defect"),
+        (7,"Reversable defect")],coerce=int)
     submit = SubmitField("Submit")

@@ -4,7 +4,7 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend class="border-bottom mb-4">Please input your information here!</legend>
                 <div class="form-group">
                     {{ form.age.label(class="form-control-label") }}
 
@@ -172,6 +172,20 @@
                         {{ form.ca(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <div class="form-group">
+                    {{ form.thal.label(class="form-control-label") }}
+
+                    {% if form.thal.errors %}
+                        {{ form.thal(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.thal.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.thal(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
@@ -184,6 +198,7 @@
     {% endfor %}
     </ul>
   {% endif %}
+  
 {% endwith %}
         </form>
     </div>
