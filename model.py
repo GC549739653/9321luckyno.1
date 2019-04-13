@@ -10,13 +10,15 @@ import pickle
 from sklearn import tree
 from IPython.display import Image
 import pydotplus
+import loadData
+try:
+    file = open('cleanedProjectData.csv', 'r')
+    file.close()
+except:
+    loadData.cleanData()
 
-df = pd.read_csv('processed.cleveland.data', names=["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope",
-         "ca", "thal", "target"])
-
-df.replace("?", np.nan, inplace=True)
-df.dropna(axis=0, inplace=True)
-df.reset_index(drop=True, inplace=True)
+df = pd.read_csv('cleanedProjectData.csv', names=["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope",
+         "ca", "thal", "target"],header=0)
 df['ca'] = pd.to_numeric(df['ca'], errors='coerce')
 df['target'].replace(to_replace=[1, 2, 3, 4], value=1, inplace=True)
 
@@ -26,7 +28,6 @@ df.cp = df.cp.astype('category')
 df.restecg = df.restecg.astype('category')
 df.slope = df.slope.astype('category')
 df.thal = df.thal.astype('category')
-#df.sex = df.sex.astype('category')
 
 df = pd.get_dummies(df)
 df[['trestbps', 'chol', 'thalach', 'oldpeak']] = df[['trestbps', 'chol', 'thalach', 'oldpeak']].astype(float)
@@ -84,14 +85,15 @@ print()
 print("LinearRegression features importance")
 print(np.std(train_x, 0) * linearRegression.coef_[0])
 
+try:
+    file = open('trained_model.sav', 'r')
+    file.close()
+except:
+    pickle.dump(svm, open('trained_model.sav', 'wb'))
 
-save_file = 'trained_model.sav'
-file = open(save_file, 'wb')
-if not file:
-    pickle.dump(svm, open(save_file, 'wb'))
 
 def prediction(sex,exang,ca,cp,restecg,slope,thal):
-    svm = pickle.load(open(save_file, 'rb'))
+    svm = pickle.load(open('trained_model.sav', 'rb'))
     input = [0 for i in range(11)]
     input[0] = sex
     input[1] = exang
