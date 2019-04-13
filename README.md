@@ -27,5 +27,5 @@ Paste the IP:port into the browser and the web app will appear immediately.
 ## Reproduce prediction model
 Reomve ***trained_model.sav*** from folder,then run ***model.py***. It will generate a new ***trained_model.sav***.<br>
 ***trained_model.sav*** can be used like follwoing code:
->model = pickle.load(open("trained_model.sav", 'rb'))
+>model = pickle.load(open("trained_model.sav", 'rb')) <br>
 >results = svm.predict([input])
