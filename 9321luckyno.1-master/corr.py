@@ -22,7 +22,7 @@ def kde_target(var_name, df):
     # 标签绘制
     plt.xlabel(var_name)
     plt.ylabel('Density')
-    plt.title('%s Distribution' % var_name)
+    plt.title('%s Distribution,the correlation between %s and the TARGET is %0.4f' % (var_name,var_name,corr))
     plt.legend()  # 显示图例
 
 
@@ -40,6 +40,8 @@ def get_corr():
     for e in df.columns:
         if e!='label':
             res[e]=df['label'].corr(df[e])
+            kde_target(e,df)
+            plt.savefig(f"static/coef/{e}.png", dpi=520)
     return "\n".join(list(map(lambda x:f"{x[0]}:{x[1]:.4f}",list(res.items()))))
 
 if __name__=="__main__":
