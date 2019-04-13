@@ -8,13 +8,11 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn import tree
-from io import StringIO
 from IPython.display import Image
 import pydotplus
 
 df = pd.read_csv('processed.cleveland.data', names=["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope",
          "ca", "thal", "target"])
-print(df)
 
 df.replace("?", np.nan, inplace=True)
 df.dropna(axis=0, inplace=True)
@@ -58,38 +56,37 @@ selected_y = df_y
 train_x, test_x, train_y, test_y = split(selected_X, selected_y, test_size=0.3, random_state=40)
 
 linearRegression = LogisticRegression()
-linearRegression.fit(train_x, train_y)
+linearRegression.fit(selected_X, selected_y)
 print(f"Accuracy: {linearRegression.score(test_x, test_y)}")
 
 svm = svm.SVC(kernel='rbf', C=1, gamma=0.01)
-svm.fit(train_x, train_y)
+svm.fit(selected_X, selected_y)
 print(f"SVM Accuracy: {svm.score(test_x, test_y)}")
 print()
 
 models = [('Linear regression', linearRegression), ('Support vector machine', svm)]
-results = model_selection.cross_val_score(linearRegression,train_x,train_y,cv=5,scoring='accuracy')
+results = model_selection.cross_val_score(linearRegression,selected_X,selected_y,cv=5,scoring='accuracy')
 print(f"Cross validated : Linear regression, 'Accuracy: {results.mean()}")
-results = model_selection.cross_val_score(svm, train_x, train_y, cv=3, scoring='accuracy')
+results = model_selection.cross_val_score(svm, selected_X, selected_y, cv=5, scoring='accuracy')
 print(f"Cross validated : Support vector machine, 'Accuracy: {results.mean()}")
-
-print()
-print("LinearRegression features importance")
-print(np.std(train_x, 0) * linearRegression.coef_[0])
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(selected_X, df_y)
 feat_importance = clf.tree_.compute_feature_importances(normalize=False)
 print("feat importance = " + str(feat_importance))
-dot_data = tree.export_graphviz(clf, out_file=None,
-                            feature_names=selected_X.columns,
-                            class_names=['No', 'Yes'],
-                         filled=True, rounded=True,
-                         special_characters=True)
+dot_data = tree.export_graphviz(clf, out_file=None,feature_names=selected_X.columns,class_names=['No', 'Yes'],filled=True, rounded=True,special_characters=True)
 graph = pydotplus.graph_from_dot_data(dot_data)
 graph.write_png("tree.png")
 Image(graph.create_png())
+results = model_selection.cross_val_score(clf, train_x, train_y, cv=5, scoring='accuracy')
+print(f"DecisionTreeClassifier, 'Accuracy: {results.mean()}")
 
-#save_file = 'trained_model.sav'
-#pickle.dump(svm, open(save_file, 'wb'))
+print()
+print("LinearRegression features importance")
+print(np.std(train_x, 0) * linearRegression.coef_[0])
+
+
+
+
 
 def prediction(sex,exang,ca,cp,restecg,slope,thal):
     svm = pickle.load(open(save_file, 'rb'))
