@@ -1,6 +1,6 @@
 from flask import Flask,render_template,url_for,redirect,flash
 from urllib import request
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, PredictForm
 from ploting_continus import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dwde280ba245'
@@ -39,6 +39,12 @@ def register():
         return redirect(url_for('home'))
     return render_template('predict.html', title='Register', form=form)
 
+@app.route("/predict", methods=['GET','POST'])
+def predict():
+    form = PredictForm()
+    if form.validate_on_submit():
+        flash(form.data['age'],'success')
+    return render_template('predict.html', title='Register', form=form)
 
 
 
