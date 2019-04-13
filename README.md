@@ -17,7 +17,7 @@ In this project, a web app containing three tasks is built. Given the dataset "p
 >14. target: have disease or not (0=no,otherwise yes).
 
 ## Run web app
-In order to run the web app, only flaskWebApp.py is run as followed:
+In order to run the web app, only ***flaskWebApp.py*** is run as followed:
 > git clone https://github.com/GC549739653/9321luckyno.1.git <br>
 > cd 9321luckyno.1-master <br>
 > python3 flaskWebAPP.py
@@ -25,3 +25,7 @@ In order to run the web app, only flaskWebApp.py is run as followed:
 Paste the IP:port into the browser and the web app will appear immediately.
 
 ## Reproduce prediction model
+Reomve ***trained_model.sav*** from folder,then run ***model.py***. It will generate a new ***trained_model.sav***.<br>
+***trained_model.sav*** can be used like follwoing code:
+>model = pickle.load(open("trained_model.sav", 'rb'))
+>results = svm.predict([input])
