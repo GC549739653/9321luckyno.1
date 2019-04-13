@@ -85,8 +85,10 @@ print("LinearRegression features importance")
 print(np.std(train_x, 0) * linearRegression.coef_[0])
 
 
-
-
+save_file = 'trained_model.sav'
+file = open(save_file, 'wb')
+if not file:
+    pickle.dump(svm, open(save_file, 'wb'))
 
 def prediction(sex,exang,ca,cp,restecg,slope,thal):
     svm = pickle.load(open(save_file, 'rb'))
