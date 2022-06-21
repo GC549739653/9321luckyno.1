@@ -28,7 +28,7 @@ MarkupSafe==1.1.1
 matplotlib==3.0.3
 mccabe==0.6.1
 nbformat==4.4.0
-numpy==1.16.2
+numpy==1.22.0
 pandas==0.24.1
 parso==0.4.0
 pexpect==4.7.0
